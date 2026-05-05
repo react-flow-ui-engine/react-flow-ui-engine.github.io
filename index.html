@@ -1,128 +1,138 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <link rel="icon" type="image/svg+xml" href="./public/favicon.svg" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>react-flow-ui-engine — Declarative React UI Flow Engine</title>
-    <meta
-      name="description"
-      content="Documentation website for react-flow-ui-engine: a lightweight declarative flow engine for conditional React UI journeys, navigation, and same-page content blocks."
-    />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="react-flow-ui-engine home">
-        <img class="logo" src="./public/logo-mark-512.png" alt="React Flow UI Engine" />
-        <span>React Flow UI Engine</span>
-      </a>
-      <nav class="top-nav" aria-label="Primary navigation">
+
+<head>
+  <link rel="icon" type="image/svg+xml" href="./public/favicon.svg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>react-flow-ui-engine — Declarative React UI Flow Engine</title>
+  <meta name="description"
+    content="Documentation website for react-flow-ui-engine: a lightweight declarative flow engine for conditional React UI journeys, navigation, and same-page content blocks." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="react-flow-ui-engine home">
+      <img class="logo" src="./public/logo-mark-512.png" alt="React Flow UI Engine" />
+      <span>React Flow UI Engine</span>
+    </a>
+    <nav class="top-nav" aria-label="Primary navigation">
+      <a href="#quick-start">Quick start</a>
+      <a href="#concepts">Concepts</a>
+      <a href="#conditional-content">Conditional content</a>
+      <a href="#api">API</a>
+      <a href="#examples">Examples</a>
+      <a href="https://github.com/react-flow-ui-engine" target="_blank">GitHub</a>
+      <a href="https://www.npmjs.com/org/react-flow-ui-engine" target="_blank">npm</a>
+    </nav>
+    <button class="menu-button" type="button" aria-label="Open navigation">☰</button>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Declarative flow logic for React apps</p>
+        <h1>Build conditional UI journeys without scattering navigation rules across components.</h1>
+        <p class="hero-text">
+          <strong>react-flow-ui-engine</strong> centralizes screen transitions, guards, validation,
+          permissions, nested flows, parallel flows, and same-page conditional content blocks.
+        </p>
+        <div class="hero-actions">
+          <a class="button secondary" href="https://github.com/react-flow-ui-engine" target="_blank">
+            View on GitHub
+          </a>
+
+          <a class="button secondary" href="https://www.npmjs.com/org/react-flow-ui-engine" target="_blank">
+            npm Packages
+          </a>
+          <a class="button primary" href="#quick-start">Start building</a>
+          <a class="button secondary" href="#conditional-content">See content blocks</a>
+        </div>
+        <div class="install-card" role="group" aria-label="Install command">
+          <code>npm install @react-flow-ui-engine/core @react-flow-ui-engine/react</code>
+          <button class="copy-button"
+            data-copy="npm install @react-flow-ui-engine/core @react-flow-ui-engine/react">Copy</button>
+        </div>
+      </div>
+      <div class="hero-preview" aria-label="Flow preview diagram">
+        <div class="flow-node active">selectType</div>
+        <div class="flow-path">SELECT business</div>
+        <div class="flow-node">businessDetails</div>
+        <div class="flow-path">NEXT</div>
+        <div class="flow-node">summary</div>
+        <div class="preview-note">Rules live in the flow definition. Components stay focused on UI.</div>
+      </div>
+    </section>
+
+    <section class="section-shell feature-grid" aria-label="Feature overview">
+      <article class="feature-card">
+        <h3>Conditional navigation</h3>
+        <p>Route users to different steps based on context, events, permissions, or async results.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Conditional same-page content</h3>
+        <p>Show or hide content blocks on the current screen with <code>visibleIf</code>.</p>
+      </article>
+      <article class="feature-card">
+        <h3>React component blocks</h3>
+        <p>Render blocks directly with React components or use a data-driven block renderer.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Nested and parallel flows</h3>
+        <p>Compose complex journeys without turning one component into a giant state machine.</p>
+      </article>
+    </section>
+
+    <div class="docs-layout section-shell">
+      <aside class="side-nav" aria-label="Documentation navigation">
+        <a href="#why">Why</a>
         <a href="#quick-start">Quick start</a>
-        <a href="#concepts">Concepts</a>
+        <a href="#concepts">Core concepts</a>
+        <a href="#flow-definition">Flow definition</a>
+        <a href="#conditional-navigation">Conditional navigation</a>
         <a href="#conditional-content">Conditional content</a>
-        <a href="#api">API</a>
+        <a href="#react-blocks">React component blocks</a>
+        <a href="#api">API reference</a>
         <a href="#examples">Examples</a>
-      </nav>
-      <button class="menu-button" type="button" aria-label="Open navigation">☰</button>
-    </header>
+        <a href="#development">Development</a>
+      </aside>
 
-    <main id="top">
-      <section class="hero section-shell">
-        <div class="hero-copy">
-          <p class="eyebrow">Declarative flow logic for React apps</p>
-          <h1>Build conditional UI journeys without scattering navigation rules across components.</h1>
-          <p class="hero-text">
-            <strong>react-flow-ui-engine</strong> centralizes screen transitions, guards, validation,
-            permissions, nested flows, parallel flows, and same-page conditional content blocks.
+      <div class="content">
+        <section id="why" class="doc-section">
+          <h2>Why this library exists</h2>
+          <p>
+            Product flows often start simple and then grow into many scattered conditional checks:
+            onboarding, checkout, KYC, account setup, role-gated pages, trial upsells, and multi-step
+            forms. This library moves the journey definition into one declarative flow object.
           </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#quick-start">Start building</a>
-            <a class="button secondary" href="#conditional-content">See content blocks</a>
-          </div>
-          <div class="install-card" role="group" aria-label="Install command">
-            <code>npm install @react-flow-ui-engine/core @react-flow-ui-engine/react</code>
-            <button class="copy-button" data-copy="npm install @react-flow-ui-engine/core @react-flow-ui-engine/react">Copy</button>
-          </div>
-        </div>
-        <div class="hero-preview" aria-label="Flow preview diagram">
-          <div class="flow-node active">selectType</div>
-          <div class="flow-path">SELECT business</div>
-          <div class="flow-node">businessDetails</div>
-          <div class="flow-path">NEXT</div>
-          <div class="flow-node">summary</div>
-          <div class="preview-note">Rules live in the flow definition. Components stay focused on UI.</div>
-        </div>
-      </section>
-
-      <section class="section-shell feature-grid" aria-label="Feature overview">
-        <article class="feature-card">
-          <h3>Conditional navigation</h3>
-          <p>Route users to different steps based on context, events, permissions, or async results.</p>
-        </article>
-        <article class="feature-card">
-          <h3>Conditional same-page content</h3>
-          <p>Show or hide content blocks on the current screen with <code>visibleIf</code>.</p>
-        </article>
-        <article class="feature-card">
-          <h3>React component blocks</h3>
-          <p>Render blocks directly with React components or use a data-driven block renderer.</p>
-        </article>
-        <article class="feature-card">
-          <h3>Nested and parallel flows</h3>
-          <p>Compose complex journeys without turning one component into a giant state machine.</p>
-        </article>
-      </section>
-
-      <div class="docs-layout section-shell">
-        <aside class="side-nav" aria-label="Documentation navigation">
-          <a href="#why">Why</a>
-          <a href="#quick-start">Quick start</a>
-          <a href="#concepts">Core concepts</a>
-          <a href="#flow-definition">Flow definition</a>
-          <a href="#conditional-navigation">Conditional navigation</a>
-          <a href="#conditional-content">Conditional content</a>
-          <a href="#react-blocks">React component blocks</a>
-          <a href="#api">API reference</a>
-          <a href="#examples">Examples</a>
-          <a href="#development">Development</a>
-        </aside>
-
-        <div class="content">
-          <section id="why" class="doc-section">
-            <h2>Why this library exists</h2>
-            <p>
-              Product flows often start simple and then grow into many scattered conditional checks:
-              onboarding, checkout, KYC, account setup, role-gated pages, trial upsells, and multi-step
-              forms. This library moves the journey definition into one declarative flow object.
-            </p>
-            <div class="comparison">
-              <div>
-                <h4>Instead of this</h4>
-<pre><code>if (plan === 'business' && country === 'AU') {
+          <div class="comparison">
+            <div>
+              <h4>Instead of this</h4>
+              <pre><code>if (plan === 'business' && country === 'AU') {
   navigate('/business/au')
 } else {
   navigate('/personal')
 }</code></pre>
-              </div>
-              <div>
-                <h4>Use this</h4>
-<pre><code>on: {
+            </div>
+            <div>
+              <h4>Use this</h4>
+              <pre><code>on: {
   SELECT_PLAN: [
     { when: (ctx, event) =&gt; event.plan === 'business', goTo: 'businessDetails' },
     { goTo: 'personalDetails' }
   ]
 }</code></pre>
-              </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section id="quick-start" class="doc-section">
-            <h2>Quick start</h2>
-            <p>Install the core package and the React bindings.</p>
-<pre><code>npm install @react-flow-ui-engine/core @react-flow-ui-engine/react</code></pre>
-            <p>Create a flow and render it with <code>FlowProvider</code> and <code>FlowRenderer</code>.</p>
-<pre><code>import { defineFlow } from '@react-flow-ui-engine/core'
+        <section id="quick-start" class="doc-section">
+          <h2>Quick start</h2>
+          <p>Install the core package and the React bindings.</p>
+          <pre><code>npm install @react-flow-ui-engine/core @react-flow-ui-engine/react</code></pre>
+          <p>Create a flow and render it with <code>FlowProvider</code> and <code>FlowRenderer</code>.</p>
+          <pre><code>import { defineFlow } from '@react-flow-ui-engine/core'
 import { FlowProvider, FlowRenderer, type FlowPageProps } from '@react-flow-ui-engine/react'
 
 type SignupContext = {
@@ -172,31 +182,60 @@ export default function App() {
     &lt;/FlowProvider&gt;
   )
 }</code></pre>
-          </section>
+        </section>
 
-          <section id="concepts" class="doc-section">
-            <h2>Core concepts</h2>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Concept</th><th>Meaning</th></tr></thead>
-                <tbody>
-                  <tr><td>Flow</td><td>A complete user journey.</td></tr>
-                  <tr><td>Step</td><td>A page, screen, or state in the journey.</td></tr>
-                  <tr><td>Context</td><td>Shared flow data used by later steps, content, and rules.</td></tr>
-                  <tr><td>Event</td><td>An action sent from UI to the engine, for example <code>SELECT_PLAN</code>.</td></tr>
-                  <tr><td>Transition</td><td>A rule that handles an event and can set context or navigate.</td></tr>
-                  <tr><td>Guard</td><td>A <code>when</code> function that decides if a transition should run.</td></tr>
-                  <tr><td>Content block</td><td>Same-page content that can be filtered with <code>visibleIf</code>.</td></tr>
-                  <tr><td>Permission</td><td>Role or permission gate for steps and transitions.</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+        <section id="concepts" class="doc-section">
+          <h2>Core concepts</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Concept</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Flow</td>
+                  <td>A complete user journey.</td>
+                </tr>
+                <tr>
+                  <td>Step</td>
+                  <td>A page, screen, or state in the journey.</td>
+                </tr>
+                <tr>
+                  <td>Context</td>
+                  <td>Shared flow data used by later steps, content, and rules.</td>
+                </tr>
+                <tr>
+                  <td>Event</td>
+                  <td>An action sent from UI to the engine, for example <code>SELECT_PLAN</code>.</td>
+                </tr>
+                <tr>
+                  <td>Transition</td>
+                  <td>A rule that handles an event and can set context or navigate.</td>
+                </tr>
+                <tr>
+                  <td>Guard</td>
+                  <td>A <code>when</code> function that decides if a transition should run.</td>
+                </tr>
+                <tr>
+                  <td>Content block</td>
+                  <td>Same-page content that can be filtered with <code>visibleIf</code>.</td>
+                </tr>
+                <tr>
+                  <td>Permission</td>
+                  <td>Role or permission gate for steps and transitions.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-          <section id="flow-definition" class="doc-section">
-            <h2>Flow definition</h2>
-            <p>A flow definition declares the initial step, shared context, and all steps.</p>
-<pre><code>const flow = defineFlow({
+        <section id="flow-definition" class="doc-section">
+          <h2>Flow definition</h2>
+          <p>A flow definition declares the initial step, shared context, and all steps.</p>
+          <pre><code>const flow = defineFlow({
   id: 'my-flow',
   initial: 'start',
   context: {},
@@ -224,15 +263,15 @@ export default function App() {
     },
   },
 })</code></pre>
-          </section>
+        </section>
 
-          <section id="conditional-navigation" class="doc-section">
-            <h2>Conditional navigation</h2>
-            <p>
-              Use transition guards when the user should move to different screens depending on input,
-              context, permissions, or an async operation.
-            </p>
-<pre><code>on: {
+        <section id="conditional-navigation" class="doc-section">
+          <h2>Conditional navigation</h2>
+          <p>
+            Use transition guards when the user should move to different screens depending on input,
+            context, permissions, or an async operation.
+          </p>
+          <pre><code>on: {
   CONTINUE: [
     {
       when: (ctx) =&gt; ctx.plan === 'business',
@@ -245,16 +284,17 @@ export default function App() {
     { goTo: 'summary' },
   ],
 }</code></pre>
-            <p class="callout"><strong>Rule of thumb:</strong> use navigation guards for “where should the user go next?”</p>
-          </section>
+          <p class="callout"><strong>Rule of thumb:</strong> use navigation guards for “where should the user go next?”
+          </p>
+        </section>
 
-          <section id="conditional-content" class="doc-section">
-            <h2>Conditional content on the same page</h2>
-            <p>
-              Use content blocks when the user should stay on the same screen but see different content.
-              Each block can define <code>visibleIf</code>, which receives the current flow context.
-            </p>
-<pre><code>const flow = defineFlow&lt;MyContext&gt;({
+        <section id="conditional-content" class="doc-section">
+          <h2>Conditional content on the same page</h2>
+          <p>
+            Use content blocks when the user should stay on the same screen but see different content.
+            Each block can define <code>visibleIf</code>, which receives the current flow context.
+          </p>
+          <pre><code>const flow = defineFlow&lt;MyContext&gt;({
   id: 'account',
   initial: 'details',
   context: { plan: 'free' },
@@ -281,17 +321,18 @@ export default function App() {
     },
   },
 })</code></pre>
-            <p class="callout"><strong>Rule of thumb:</strong> use content guards for “what should be shown on this page?”</p>
-          </section>
+          <p class="callout"><strong>Rule of thumb:</strong> use content guards for “what should be shown on this page?”
+          </p>
+        </section>
 
-          <section id="react-blocks" class="doc-section">
-            <h2>React component content blocks</h2>
-            <p>
-              Content blocks can be data-driven or provide a React component. <code>FlowContentBlocks</code>
-              renders blocks with a <code>component</code> automatically and passes non-component blocks to
-              the optional <code>renderBlock</code> fallback.
-            </p>
-<pre><code>import {
+        <section id="react-blocks" class="doc-section">
+          <h2>React component content blocks</h2>
+          <p>
+            Content blocks can be data-driven or provide a React component. <code>FlowContentBlocks</code>
+            renders blocks with a <code>component</code> automatically and passes non-component blocks to
+            the optional <code>renderBlock</code> fallback.
+          </p>
+          <pre><code>import {
   FlowContentBlocks,
   type FlowContentBlockComponentProps,
   type FlowPageProps,
@@ -338,103 +379,151 @@ const flow = defineFlow&lt;MyContext&gt;({
     },
   },
 })</code></pre>
-          </section>
+        </section>
 
-          <section id="api" class="doc-section">
-            <h2>API reference</h2>
-            <h3>Packages</h3>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Package</th><th>Purpose</th></tr></thead>
-                <tbody>
-                  <tr><td><code>@react-flow-ui-engine/core</code></td><td>Framework-agnostic flow engine, validators, permissions, transitions, content filtering.</td></tr>
-                  <tr><td><code>@react-flow-ui-engine/react</code></td><td>React provider, hook, renderer, nested/parallel rendering, content block rendering.</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <h3>React API</h3>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>API</th><th>Description</th></tr></thead>
-                <tbody>
-                  <tr><td><code>&lt;FlowProvider /&gt;</code></td><td>Provides a flow engine instance to React.</td></tr>
-                  <tr><td><code>&lt;FlowRenderer /&gt;</code></td><td>Renders the current step component, nested flows, or parallel flows.</td></tr>
-                  <tr><td><code>useFlow()</code></td><td>Returns the active flow state and actions.</td></tr>
-                  <tr><td><code>&lt;FlowContentBlocks /&gt;</code></td><td>Renders visible same-page content blocks.</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <h3>Useful flow object properties</h3>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Property / method</th><th>Description</th></tr></thead>
-                <tbody>
-                  <tr><td><code>flow.context</code></td><td>Current shared context.</td></tr>
-                  <tr><td><code>flow.currentStepId</code></td><td>Current step id.</td></tr>
-                  <tr><td><code>flow.currentStep</code></td><td>Current step definition.</td></tr>
-                  <tr><td><code>flow.content</code></td><td>Current step content with conditional blocks filtered.</td></tr>
-                  <tr><td><code>flow.visibleContentBlocks</code></td><td>Visible content blocks for the current context.</td></tr>
-                  <tr><td><code>flow.send(event)</code></td><td>Send an event to the active step.</td></tr>
-                  <tr><td><code>flow.next(patch?)</code></td><td>Go to the current step's next target.</td></tr>
-                  <tr><td><code>flow.back()</code></td><td>Go back to explicit back target or history.</td></tr>
-                  <tr><td><code>flow.setContext(patch)</code></td><td>Merge values into shared context.</td></tr>
-                  <tr><td><code>flow.reset()</code></td><td>Reset to initial step and context.</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+        <section id="api" class="doc-section">
+          <h2>API reference</h2>
+          <h3>Packages</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Package</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>@react-flow-ui-engine/core</code></td>
+                  <td>Framework-agnostic flow engine, validators, permissions, transitions, content filtering.</td>
+                </tr>
+                <tr>
+                  <td><code>@react-flow-ui-engine/react</code></td>
+                  <td>React provider, hook, renderer, nested/parallel rendering, content block rendering.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>React API</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>API</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>&lt;FlowProvider /&gt;</code></td>
+                  <td>Provides a flow engine instance to React.</td>
+                </tr>
+                <tr>
+                  <td><code>&lt;FlowRenderer /&gt;</code></td>
+                  <td>Renders the current step component, nested flows, or parallel flows.</td>
+                </tr>
+                <tr>
+                  <td><code>useFlow()</code></td>
+                  <td>Returns the active flow state and actions.</td>
+                </tr>
+                <tr>
+                  <td><code>&lt;FlowContentBlocks /&gt;</code></td>
+                  <td>Renders visible same-page content blocks.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Useful flow object properties</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Property / method</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>flow.context</code></td>
+                  <td>Current shared context.</td>
+                </tr>
+                <tr>
+                  <td><code>flow.currentStepId</code></td>
+                  <td>Current step id.</td>
+                </tr>
+                <tr>
+                  <td><code>flow.currentStep</code></td>
+                  <td>Current step definition.</td>
+                </tr>
+                <tr>
+                  <td><code>flow.content</code></td>
+                  <td>Current step content with conditional blocks filtered.</td>
+                </tr>
+                <tr>
+                  <td><code>flow.visibleContentBlocks</code></td>
+                  <td>Visible content blocks for the current context.</td>
+                </tr>
+                <tr>
+                  <td><code>flow.send(event)</code></td>
+                  <td>Send an event to the active step.</td>
+                </tr>
+                <tr>
+                  <td><code>flow.next(patch?)</code></td>
+                  <td>Go to the current step's next target.</td>
+                </tr>
+                <tr>
+                  <td><code>flow.back()</code></td>
+                  <td>Go back to explicit back target or history.</td>
+                </tr>
+                <tr>
+                  <td><code>flow.setContext(patch)</code></td>
+                  <td>Merge values into shared context.</td>
+                </tr>
+                <tr>
+                  <td><code>flow.reset()</code></td>
+                  <td>Reset to initial step and context.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-          <section id="examples" class="doc-section">
-            <h2>Examples</h2>
-            <div class="example-grid">
-              <article class="example-card">
-                <h3>Basic React Vite example</h3>
-                <p>Small example showing a basic conditional flow.</p>
-                <code>examples/react-vite/</code>
-              </article>
-              <article class="example-card">
-                <h3>Stripe-style onboarding</h3>
-                <p>Full SaaS onboarding flow with validation, async transitions, permissions, nested flows, parallel flows, and content blocks.</p>
-                <code>examples/onboarding-stripe/</code>
-              </article>
-            </div>
-<pre><code>pnpm install
+        <section id="examples" class="doc-section">
+          <h2>Examples</h2>
+          <div class="example-grid">
+            <article class="example-card">
+              <h3>Basic React Vite example</h3>
+              <p>Small example showing a basic conditional flow.</p>
+              <code>examples/react-vite/</code>
+            </article>
+            <article class="example-card">
+              <h3>Stripe-style onboarding</h3>
+              <p>Full SaaS onboarding flow with validation, async transitions, permissions, nested flows, parallel
+                flows, and content blocks.</p>
+              <code>examples/onboarding-stripe/</code>
+            </article>
+          </div>
+          <pre><code>pnpm install
 pnpm build
 pnpm dev
 pnpm dev:onboarding</code></pre>
-          </section>
+        </section>
 
-          <section id="development" class="doc-section">
-            <h2>Local development</h2>
-<pre><code>pnpm install
-pnpm build
-pnpm dev</code></pre>
-            <h3>Repository structure</h3>
-<pre><code>react-flow-ui-engine/
-  packages/
-    core/
-    react/
-  examples/
-    react-vite/
-    onboarding-stripe/
-  docs/
-  README.md
-  CONTRIBUTING.md
-  LICENSE</code></pre>
-            <h3>Philosophy</h3>
-            <blockquote>
-              Core owns journey state. React owns rendering. Components own local UI state. Your app owns server state.
-            </blockquote>
-          </section>
-        </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer class="site-footer">
-      <p>MIT licensed.</p>
+  <footer class="site-footer">
+    <p>MIT licensed.</p>
+
+    <div class="footer-links">
+      <a href="https://github.com/react-flow-ui-engine" target="_blank">GitHub</a>
+      <a href="https://www.npmjs.com/org/react-flow-ui-engine" target="_blank">npm</a>
       <a href="#top">Back to top</a>
-    </footer>
+    </div>
+  </footer>
 
-    <script src="./script.js"></script>
-  </body>
+  <script src="./script.js"></script>
+</body>
+
 </html>
